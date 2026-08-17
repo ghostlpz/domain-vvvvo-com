@@ -78,6 +78,15 @@ footer {
   letter-spacing: -0.02em;
 }
 
+.brand-en {
+  color: var(--ink-soft);
+  font-family: var(--utility);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .brand-mark {
   color: var(--blue);
   font-size: 11px;
@@ -142,6 +151,15 @@ footer {
 .hero h1 em {
   color: var(--blue);
   font-style: normal;
+}
+
+.hero-title-en {
+  margin: 16px 0 0;
+  color: var(--blue-dark);
+  font-family: var(--utility);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .hero-intro {
@@ -269,6 +287,25 @@ footer {
 .process h2,
 .contact h2 {
   font-size: clamp(48px, 7vw, 84px);
+}
+
+.heading-en {
+  display: block;
+  margin-top: 12px;
+  color: var(--blue-dark);
+  font-family: var(--utility);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.copy-en {
+  display: block;
+  margin-top: 8px;
+  color: color-mix(in srgb, currentColor 82%, transparent);
+  font-size: 0.94em;
 }
 
 .section-heading > p {
@@ -419,6 +456,17 @@ footer {
   letter-spacing: -0.04em;
 }
 
+.domain-offer strong small {
+  display: block;
+  margin-top: 3px;
+  color: var(--ink-soft);
+  font-family: var(--utility);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .domain-offer a {
   color: var(--blue-dark);
   font-size: 13px;
@@ -467,6 +515,17 @@ footer {
 .process-steps h3 {
   margin: 0 0 7px;
   font-size: 17px;
+}
+
+.step-en {
+  display: block;
+  margin-top: 3px;
+  color: var(--blue-dark);
+  font-family: var(--utility);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .process-steps p {
