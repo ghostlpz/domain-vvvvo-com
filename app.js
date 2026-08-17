@@ -11,8 +11,8 @@ export function formatPrice(price, currency = "CNY") {
 }
 
 export function buildInquiryLink(email, domainName = "感兴趣的域名") {
-  const subject = `域名询价：${domainName}`;
-  const body = `你好，我对 ${domainName} 感兴趣。\n\n我的报价 / 预算：\n用途简介：\n联系方式：`;
+  const subject = `域名询价 / Domain enquiry: ${domainName}`;
+  const body = `你好，我对 ${domainName} 感兴趣。\nHello, I am interested in ${domainName}.\n\n我的报价 / 预算 / Offer or budget:\n用途简介 / Intended use:\n联系方式 / Contact details:`;
   return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -20,7 +20,7 @@ export function filterDomains(items, category = "全部", query = "") {
   const normalizedQuery = query.trim().toLocaleLowerCase("zh-CN");
   return items.filter((item) => {
     const matchesCategory = category === "全部" || item.category === category;
-    const searchable = [item.name, item.category, item.description, ...item.tags].join(" ").toLocaleLowerCase("zh-CN");
+    const searchable = [item.name, item.category, item.categoryEn, item.description, item.descriptionEn, ...item.tags].join(" ").toLocaleLowerCase("zh-CN");
     return matchesCategory && (!normalizedQuery || searchable.includes(normalizedQuery));
   });
 }
@@ -39,18 +39,18 @@ function domainCard(domain) {
     <div class="domain-identity">
       <div class="domain-name-row">
         <h3><span>${label}</span><b>${extension}</b></h3>
-        ${domain.featured ? '<span class="featured-badge">精选</span>' : ""}
+        ${domain.featured ? '<span class="featured-badge">精选 / Featured</span>' : ""}
       </div>
-      <p>${domain.description}</p>
+      <p>${domain.description}<span class="copy-en" lang="en">${domain.descriptionEn}</span></p>
       <ul class="tag-list" aria-label="域名标签">
         ${domain.tags.map((tag) => `<li>${tag}</li>`).join("")}
       </ul>
     </div>
     <div class="domain-offer">
-      <span class="category-label">${domain.category}</span>
-      <strong>${formatPrice(domain.price, siteConfig.currency)}</strong>
-      <a href="${buildInquiryLink(siteConfig.contactEmail, domain.name)}" aria-label="询价 ${domain.name}">
-        询价 <span aria-hidden="true">↗</span>
+      <span class="category-label">${domain.category} / ${domain.categoryEn}</span>
+      <strong>${formatPrice(domain.price, siteConfig.currency)}<small> / Make an offer</small></strong>
+      <a href="${buildInquiryLink(siteConfig.contactEmail, domain.name)}" aria-label="询价 / Make an offer ${domain.name}">
+        询价 / Enquire <span aria-hidden="true">↗</span>
       </a>
     </div>
   `;
@@ -89,7 +89,7 @@ function init() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "filter-button";
-    button.textContent = category;
+    button.textContent = `${category} / ${domains.find((domain) => domain.category === category)?.categoryEn ?? "All"}`;
     button.setAttribute("aria-pressed", String(category === activeCategory));
     button.addEventListener("click", () => {
       activeCategory = category;
